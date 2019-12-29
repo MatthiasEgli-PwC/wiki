@@ -125,6 +125,12 @@ $ docker run -ti -v ~/.local/share/io.parity.ethereum/docker/:/home/parity/.loca
 
 This will expose the whole data dir to the host machine at `~/.local/share/io.parity.ethereum/docker/`.
 
+On macOS a significant performance boost can be achieved by mounting the data dir with the [`delegated`](https://docs.docker.com/docker-for-mac/osxfs-caching/) option like this:
+
+```
+$ docker run -ti -v ~/.local/share/io.parity.ethereum/docker/:/home/parity/.local/share/io.parity.ethereum/:delegated parity/parity:v2.1.3 --base-path /home/parity/.local/share/io.parity.ethereum/
+```
+
 Windows machines don't support unix permissions, which means you will likely experience errors when mounting a local volume as a non-root user. One workaround for this is to create a volume using:
 
 ```
